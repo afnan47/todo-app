@@ -1,0 +1,10 @@
+<ul>
+    <li>User: {{task.user}}</li> 
+    <li>Task: {{task.title}}</li> 
+    <li>Description: {{task.description}}</li>
+    <li>Status: {% if task.complete %} Completed
+                {% else %} Incomplete
+                {% endif %}
+    </li>
+</ul>
+<a href="{% url 'tasks' %}">Go back</a>

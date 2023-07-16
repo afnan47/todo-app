@@ -1,0 +1,24 @@
+<h1>My Todo List</h1>
+<a href="{% url 'task-create' %}"><button>Add Task</button></a>
+<table>
+    <tr>
+        <th><b>Tasks<b></th>
+        <th>Actions</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        {% if task.complete %}
+            <td><i><s>{{task.title}}</s><i>
+            <td><a href="{%url 'task-delete' task.id%}"><button><span style="color: red;">Delete</span></button></a></td>
+            <td><a href="{% url 'task-update' task.id %}"><button><span style="color: blue;">Edit</span></button></a></td>
+        {% else %}
+                <td>{{task.title}}</td>
+                <td><a href="{% url 'tasks' task.id %}"><button><span style="color: green;">Details</span></button></a></td>
+                <td><a href="{% url 'task-update' task.id %}"><button><span style="color: blue;">Edit / Mark Complete</span></button></a></td>
+                <td><a href="{%url 'task-delete' task.id%}"><button><span style="color: red;">Delete</span></button></a></td>
+        {% endif %}
+    </tr>
+    {% empty %}
+        <h3>Empty Todo(Click on Add task)</h3>
+    {% endfor %}
+</table>
